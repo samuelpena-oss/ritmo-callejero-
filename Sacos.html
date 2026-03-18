@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buzos - Ritmo Callejero</title>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Frontend/Styles.css">
+<link rel="stylesheet" href="Frontend/Teniss.css">
+<link rel="stylesheet" href="Frontend/carrito.css">
+</head>
+<body>
+
+<!-- BOTÓN CARRITO FLOTANTE -->
+<button class="carrito-btn-flotante" onclick="Carrito.abrir()" title="Ver carrito">
+    <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+    <span class="carrito-badge">0</span>
+</button>
+
+<!-- PANEL LATERAL CARRITO -->
+<div class="carrito-overlay" id="carritoOverlay"></div>
+<div class="carrito-panel" id="carritoPanel">
+    <div class="carrito-header">
+        <span class="carrito-titulo">🛒 MI CARRITO</span>
+        <button class="carrito-cerrar" onclick="Carrito.cerrar()">✕</button>
+    </div>
+    <div class="carrito-items" id="carritoItems">
+        <div class="carrito-vacio">
+            <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <p>TU CARRITO ESTÁ VACÍO</p>
+        </div>
+    </div>
+    <div class="carrito-footer">
+        <div class="carrito-total">
+            <span class="carrito-total-label">TOTAL:</span>
+            <span class="carrito-total-valor" id="carritoTotal">$0</span>
+        </div>
+        <button class="carrito-checkout" onclick="Carrito.checkout()">PAGAR AHORA 🔥</button>
+    </div>
+</div>
+
+<header>
+    <img src="imagenes/logo.jpeg" alt="Ritmo Callejero Logo">
+    <nav>
+        <a href="Index.html">Inicio</a>
+        <div class="nav-item">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="tienda-link">Tienda</label>
+            <div class="dropdown">
+                <a href="Gorras.html">*Gorras</a>
+                <a href="Camisas.html">*Camisas</a>
+                <a href="Sacos.html">*Buzos</a>
+                <a href="Teniss.html">*Tenis</a>
+            </div>
+        </div>
+        <a href="Nosotros.html">Nosotros</a>
+        <a href="Contacto.html">Contacto</a>
+    </nav>
+</header>
+
+<section class="productos">
+    <h2>Buzos</h2>
+    <div class="grid">
+
+        <div class="card">
+            <img src="imagenes/buso1.jpg" class="item" alt="Buzo Street 1">
+            <h3>Buzo Street</h3>
+            <div class="precio">$65.000</div>
+            <button class="boton-carrito" onclick="agregarAlCarrito(this, 'Buzo Street', '$65.000', 'imagenes/buso1.jpg')">
+                <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                AGREGAR
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/buso2.jpg" class="item" alt="Buzo Urban">
+            <h3>Buzo Urban</h3>
+            <div class="precio">$70.000</div>
+            <button class="boton-carrito" onclick="agregarAlCarrito(this, 'Buzo Urban', '$70.000', 'imagenes/buso2.jpg')">
+                <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                AGREGAR
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/buso3.jpg" class="item" alt="Buzo Grafiti">
+            <h3>Buzo Grafiti</h3>
+            <div class="precio">$70.000</div>
+            <button class="boton-carrito" onclick="agregarAlCarrito(this, 'Buzo Grafiti', '$70.000', 'imagenes/buso3.jpg')">
+                <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                AGREGAR
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/buso4.jpg" class="item" alt="Buzo Oversize">
+            <h3>Buzo Oversize</h3>
+            <div class="precio">$30.000</div>
+            <button class="boton-carrito" onclick="agregarAlCarrito(this, 'Buzo Oversize', '$30.000', 'imagenes/buso4.jpg')">
+                <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                AGREGAR
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/buso5.jpg" class="item" alt="Buzo Crew">
+            <h3>Buzo Crew</h3>
+            <div class="precio">$40.000</div>
+            <button class="boton-carrito" onclick="agregarAlCarrito(this, 'Buzo Crew', '$40.000', 'imagenes/buso5.jpg')">
+                <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                AGREGAR
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/busi11.jpg" class="item" alt="Buzo Premium">
+            <h3>Buzo Premium</h3>
+            <div class="precio">$40.000</div>
+            <button class="boton-carrito" onclick="agregarAlCarrito(this, 'Buzo Premium', '$40.000', 'imagenes/busi11.jpg')">
+                <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                AGREGAR
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/buso12.jpg" class="item" alt="Buzo Edition">
+            <h3>Buzo Edition</h3>
+            <div class="precio">$40.000</div>
+            <button class="boton-carrito" onclick="agregarAlCarrito(this, 'Buzo Edition', '$40.000', 'imagenes/buso12.jpg')">
+                <svg viewBox="0 0 24 24"><path d="M17 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2M1 2v2h2l3.6 7.6L5.2 14C5.1 14.3 5 14.7 5 15c0 1.1.9 2 2 2h14v-2H7.4c-.1 0-.2-.1-.2-.2v-.1l1-1.8H19c.7 0 1.3-.4 1.6-1l3.6-6.4c.1-.2.2-.5.2-.8 0-.6-.5-1-1.1-1H5.2L4.3 2H1m6 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                AGREGAR
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<footer>© 2026 Ritmo Callejero - Todos los derechos reservados</footer>
+
+<script src="carrito.js"></script>
+<script>
+function agregarAlCarrito(btn, nombre, precio, imagen) {
+    Carrito.agregar(nombre, precio, imagen);
+    const svgIcon = '<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+    const textoOriginal = btn.innerHTML;
+    btn.classList.add('agregado');
+    btn.innerHTML = svgIcon + ' LISTO!';
+    setTimeout(() => { btn.classList.remove('agregado'); btn.innerHTML = textoOriginal; }, 1800);
+}
+</script>
+</body>
+</html>
